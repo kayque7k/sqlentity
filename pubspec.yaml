@@ -2,7 +2,7 @@ name: sqlentity
 description: Create DataBase.
 version: 0.0.1
 author: kayque7k
-homepage: sqlentity
+homepage: https://github.com/kayque7k/sqlentity.git
 
 environment:
   sdk: ">=2.0.0-dev.68.0 <3.0.0"
