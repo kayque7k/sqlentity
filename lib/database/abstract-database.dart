@@ -4,19 +4,25 @@ import 'package:sqflite/sqflite.dart';
 
 import 'package:sqlentity/database/database-config.dart';
 
+///The AbstractRepository is the class that performs the interaction with the database,
+///performs the updates and creation of the bank when necessary.
 abstract class AbstractRepository {
   Database _database;
   DataBaseConfig _databaseConfig;
 
+  ///open database
   open() async {
     _databaseConfig = DataBaseConfig.getInstance();
     _database = await _createDataBase();
   }
 
+  ///get conection database
   Database get database => _database;
 
+  ///close database
   Future close() async => await _database.close();
 
+  ///create or update database
   Future<Database> _createDataBase() async {
     return await openDatabase(
         join(await getDatabasesPath(), _databaseConfig.database_name),

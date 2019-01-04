@@ -1,6 +1,6 @@
 name: sqlentity
 description: Create DataBase.
-version: 0.0.1
+version: 0.0.2
 author: kayque7k
 homepage: https://github.com/kayque7k/sqlentity.git
 
@@ -12,7 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  sqflite: ^0.12.2+1
+  sqflite: ^0.13.0+1
   path_provider: ^0.4.1
 
 # For information on the generic Dart part of this file, see the

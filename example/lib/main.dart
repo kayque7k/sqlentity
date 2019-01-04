@@ -23,7 +23,7 @@ class _MyAppState extends State<MyApp> {
   _MyAppState(){
     initDatabase();
     _idao = new DAORepository(new UserEntity());
-    openDatabase();
+    initData();
   }
 
   void initDatabase() {
@@ -38,31 +38,29 @@ class _MyAppState extends State<MyApp> {
     UserEntity jose = new UserEntity(name: "Jose");
     UserEntity marcos = new UserEntity(name: "Marcos");
     UserEntity rodrigo = new UserEntity(name: "Rodrigo");
+
     //realiza a inserção no banco e retorna o id
     int idjose = await _idao.insert(jose);
     await _idao.insert(marcos);
     int idrodrigo = await _idao.insert(rodrigo);
     jose.id = idjose;
     jose.name = "Roger";
+
     //realiza a atualização da entidade no banco e retorna um status
     await _idao.update(jose);
     rodrigo.id = idrodrigo;
+
     //realiza a exclusao no banco e retorna um status
     await _idao.delete(rodrigo);
-  }
 
-  void filter() async {
+    //lista de usuarios no banco
     var userlist = await _idao.select() as List<UserEntity>;
-    print(userlist);
     setState(() {
+      //setando lista
       users = userlist;
     });
   }
 
-  openDatabase()async{
-    await initData();
-    await filter();
-  }
 
   @override
   void initState() {
@@ -105,6 +103,7 @@ class UserEntity extends Entity {
     //O id deve ser sempre o primeiro caso queira usar as operaçoes padroes do DAO
     createColumn("ID", "INTEGER PRIMARY KEY AUTOINCREMENT", 1);
 
+    //nova coluna
     createColumn("NAME", "TEXT", 1);
   }
 

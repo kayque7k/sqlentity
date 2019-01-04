@@ -1,4 +1,3 @@
-
 import 'dart:async';
 
 import 'package:sqflite/sqflite.dart';
@@ -6,16 +5,20 @@ import 'package:sqlentity/base-entity/entity.dart';
 import 'package:sqlentity/database/abstract-database.dart';
 import 'package:sqlentity/repository/dao/i-dao-repository.dart';
 
+///Repository
 class DAORepository<T extends Entity> extends AbstractRepository
     implements IDAORepository<T> {
   T _entity;
 
+  ///init repository
   DAORepository(T entity) : super() {
     this._entity = entity;
   }
 
+  ///table
   T get entity => _entity;
 
+  ///insert data table
   @override
   Future<int> insert(T entity) async {
     var results;
@@ -54,6 +57,7 @@ class DAORepository<T extends Entity> extends AbstractRepository
     }
   }
 
+  ///search data table
   @override
   Future<List<T>> select() async {
     await open();
@@ -65,6 +69,7 @@ class DAORepository<T extends Entity> extends AbstractRepository
     return itens;
   }
 
+  ///update data table
   @override
   Future<bool> update(T entity) async {
     try {
@@ -95,6 +100,7 @@ class DAORepository<T extends Entity> extends AbstractRepository
     }
   }
 
+  ///delete data table
   @override
   Future<bool> delete(T entity) async {
     try {
@@ -116,6 +122,7 @@ class DAORepository<T extends Entity> extends AbstractRepository
     }
   }
 
+  ///search for id data table
   @override
   Future<T> getById(T entity) async {
     await open();
@@ -125,6 +132,7 @@ class DAORepository<T extends Entity> extends AbstractRepository
     return _entity.map(select[0]) as T;
   }
 
+  ///count data table
   @override
   Future<int> count() async {
     await open();
