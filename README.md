@@ -1,13 +1,13 @@
 # Sqlentity
 
-o Sqlentity é um ORM focado em facilitar o vida do desenvolvedor, onde é possivel criar um classe e apartir desta classe realizar a criação do banco de dados interno (sqlite) no dispositivo mobile.
+o Sqlentity é um ORM focado em facilitar o vida do desenvolvedor, onde é possivel criar uma classe e apartir desta classe realizar a criação do banco de dados interno (sqlite) no dispositivo mobile.
 
-é recomentado realizar os configurações e preparação do banco, no construtor inicial da classe, evite usa-lo no initState.
+É recomentado realizar os configurações e preparação do banco, no construtor inicial da classe, evite usa-lo no initState.
 
 # instalação
 ```
 dependencies:
-  sqlentity: ^0.0.1
+  sqlentity: ^1.0.1
 ```
 
 

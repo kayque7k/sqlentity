@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
-
-import 'package:flutter/services.dart';
 import 'package:sqlentity/base-entity/entity.dart';
 import 'package:sqlentity/database/database-config.dart';
 import 'package:sqlentity/repository/dao/i-dao-repository.dart';
 import 'package:sqlentity/repository/dao/dao-repository.dart';
 
-
-
-void main()  => runApp(new MyApp());
+void main() => runApp(new MyApp());
 
 class MyApp extends StatefulWidget {
   @override
@@ -20,7 +15,7 @@ class _MyAppState extends State<MyApp> {
   List<UserEntity> users = new List();
   IDAORepository<UserEntity> _idao;
 
-  _MyAppState(){
+  _MyAppState() {
     initDatabase();
     _idao = new DAORepository(new UserEntity());
     initData();
@@ -35,23 +30,23 @@ class _MyAppState extends State<MyApp> {
 
   void initData() async {
     //criar a entidade
-    UserEntity jose = new UserEntity(name: "Jose");
-    UserEntity marcos = new UserEntity(name: "Marcos");
-    UserEntity rodrigo = new UserEntity(name: "Rodrigo");
+    UserEntity dart = new UserEntity(name: "DART");
+    UserEntity flutter = new UserEntity(name: "FLUTTER");
+    UserEntity android = new UserEntity(name: "ANDROID");
 
     //realiza a inserção no banco e retorna o id
-    int idjose = await _idao.insert(jose);
-    await _idao.insert(marcos);
-    int idrodrigo = await _idao.insert(rodrigo);
-    jose.id = idjose;
-    jose.name = "Roger";
+    int iddart = await _idao.insert(dart);
+    await _idao.insert(flutter);
+    int idandroid = await _idao.insert(android);
+    dart.id = iddart;
+    dart.name = "KOTLIN";
 
     //realiza a atualização da entidade no banco e retorna um status
-    await _idao.update(jose);
-    rodrigo.id = idrodrigo;
+    await _idao.update(dart);
+    android.id = idandroid;
 
     //realiza a exclusao no banco e retorna um status
-    await _idao.delete(rodrigo);
+    await _idao.delete(android);
 
     //lista de usuarios no banco
     var userlist = await _idao.select() as List<UserEntity>;
@@ -60,7 +55,6 @@ class _MyAppState extends State<MyApp> {
       users = userlist;
     });
   }
-
 
   @override
   void initState() {
@@ -80,10 +74,15 @@ class _MyAppState extends State<MyApp> {
               itemCount: users.length,
               itemBuilder: (context, index) {
                 return new Container(
+                    margin: new EdgeInsets.all(8.0),
                     child: new Center(
                         child: new Text(
-                  '${users[index].name}',
-                )));
+                      '${users[index].name}',
+                      style: new TextStyle(
+                          color: Colors.green,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18),
+                    )));
               })),
     );
   }
