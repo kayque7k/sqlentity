@@ -2,16 +2,15 @@ import 'dart:async';
 
 import 'package:sqflite/sqflite.dart';
 import 'package:sqlentity/base-entity/entity.dart';
+import 'package:sqlentity/dao/i-dao.dart';
 import 'package:sqlentity/database/abstract-database.dart';
-import 'package:sqlentity/repository/dao/i-dao-repository.dart';
 
 ///Repository
-class DAORepository<T extends Entity> extends AbstractRepository
-    implements IDAORepository<T> {
+class DAO<T extends Entity> extends AbstractRepository implements IDAO<T> {
   T _entity;
 
   ///init repository
-  DAORepository(T entity) : super() {
+  DAO(T entity) : super() {
     this._entity = entity;
   }
 
@@ -35,8 +34,7 @@ class DAORepository<T extends Entity> extends AbstractRepository
       });
       sql += ") VALUES (";
       entity.column.forEach((column) {
-        if (column.column != entity.column[0].column) if (column ==
-            entity.column[entity.column.length - 1])
+        if (column.column != entity.column[0].column) if (column == entity.column[entity.column.length - 1])
           sql += "? ";
         else
           sql += "? ,";
@@ -50,10 +48,10 @@ class DAORepository<T extends Entity> extends AbstractRepository
       });
 
       await close();
-      return results[0];
+      return await results[0];
     } catch (e) {
       await close();
-      return 0;
+      return await 0;
     }
   }
 
@@ -63,10 +61,7 @@ class DAORepository<T extends Entity> extends AbstractRepository
     await open();
     var select = await database.rawQuery('SELECT * FROM ${_entity.table}');
     await close();
-    List<Entity> ent = await select.map((i) => _entity.map(i)).toList();
-    List<T> itens = new List();
-    ent.forEach((item) => itens.add(item as T));
-    return itens;
+    return await select.map((i) => _entity.map(i)).toList();
   }
 
   ///update data table
@@ -93,10 +88,10 @@ class DAORepository<T extends Entity> extends AbstractRepository
       });
 
       await close();
-      return true;
+      return await true;
     } catch (e) {
       await close();
-      return false;
+      return await false;
     }
   }
 
@@ -105,8 +100,7 @@ class DAORepository<T extends Entity> extends AbstractRepository
   Future<bool> delete(T entity) async {
     try {
       await open();
-      var sql =
-          'DELETE FROM  ${entity.table} WHERE ${entity.column[0].column} = ${entity.column[0].value}';
+      var sql = 'DELETE FROM  ${entity.table} WHERE ${entity.column[0].column} = ${entity.column[0].value}';
 
       await database.transaction((txn) async {
         var batch = txn.batch();
@@ -115,10 +109,10 @@ class DAORepository<T extends Entity> extends AbstractRepository
       });
 
       await close();
-      return true;
+      return await true;
     } catch (e) {
       await close();
-      return false;
+      return await false;
     }
   }
 
@@ -126,10 +120,9 @@ class DAORepository<T extends Entity> extends AbstractRepository
   @override
   Future<T> getById(T entity) async {
     await open();
-    var select = await database.rawQuery(
-        'SELECT * FROM ${_entity.table} WHERE ${entity.column[0].column} = ${entity.column[0].value}');
+    var select = await database.rawQuery('SELECT * FROM ${_entity.table} WHERE ${entity.column[0].column} = ${entity.column[0].value}');
     await close();
-    return _entity.map(select[0]) as T;
+    return await _entity.map(select[0]) as T;
   }
 
   ///count data table
@@ -138,6 +131,6 @@ class DAORepository<T extends Entity> extends AbstractRepository
     await open();
     var count = await Sqflite.firstIntValue(await database.rawQuery("SELECT COUNT(*) FROM ${_entity.table}"));
     await close();
-    return count;
+    return await count;
   }
 }

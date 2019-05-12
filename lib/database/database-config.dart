@@ -1,56 +1,29 @@
-
 import 'package:sqlentity/base-entity/entity.dart';
 
 ///The DataBaseConfig looks for the database configuration provided by the developer
 class DataBaseConfig {
-  String _database_name;
-  int _database_version;
-  static DataBaseConfig _dataBaseConfig;
-  List<Entity> _entitys;
-
-  ///config database
-  DataBaseConfig() {
-    if(_entitys == null)
-      _entitys = new List();
-  }
+  String database_name;
+  int database_version;
+  static DataBaseConfig _DATABASE_CONFIG;
+  List<Entity> entitys;
 
   ///configured instance database
-  static DataBaseConfig getInstance() {
-    if (_dataBaseConfig == null)
-      _dataBaseConfig = DataBaseConfig();
-
-    return _dataBaseConfig;
+  factory DataBaseConfig() {
+    if (_DATABASE_CONFIG == null) {
+      _DATABASE_CONFIG = DataBaseConfig._getInstance();
+    }
+    return _DATABASE_CONFIG;
   }
 
-  ///name database
-  String get database_name => _database_name;
-
-  ///set name database
-  set database_name(String value) {
-    _database_name = value;
+  DataBaseConfig._getInstance() {
+    if (entitys == null) entitys = new List();
   }
 
   ///database instantiated and configured
-  DataBaseConfig get dataBaseConfig => _dataBaseConfig;
+  DataBaseConfig get dataBaseConfig => _DATABASE_CONFIG;
 
   ///set database configured
   set dataBaseConfig(DataBaseConfig value) {
-    _dataBaseConfig = value;
-  }
-
-  ///database version
-  int get database_version => _database_version;
-
-  ///set database version
-  set database_version(int value) {
-    _database_version = value;
-  }
-
-  ///entitys configured
-  List<Entity> get entitys => _entitys;
-
-  ///set entitys configured
-  set entitys(List<Entity> value) {
-    _entitys = value;
+    _DATABASE_CONFIG = value;
   }
 }
