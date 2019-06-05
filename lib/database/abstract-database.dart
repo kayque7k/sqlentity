@@ -21,7 +21,12 @@ abstract class AbstractRepository {
 
   ///create or update database
   Future<Database> _createDataBase() async {
-    return await openDatabase(join(await getDatabasesPath(), _databaseConfig.database_name), version: _databaseConfig.database_version, onCreate: (Database db, int version) async {
+    return await openDatabase(
+        join(await getDatabasesPath(),
+            _databaseConfig.database_name),
+        version: _databaseConfig.database_version,
+        singleInstance: true,
+        onCreate: (Database db, int version) async {
       for (var entity in _databaseConfig.entitys) {
         var sql = "CREATE TABLE IF NOT EXISTS ${entity.table} (";
 

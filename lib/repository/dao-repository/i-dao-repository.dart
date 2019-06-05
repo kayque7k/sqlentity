@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:sqlentity/base-entity/entity.dart';
 
 ///Standard contract of repository

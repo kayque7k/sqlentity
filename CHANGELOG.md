@@ -1,4 +1,4 @@
-## 1.0.3
+## 1.0.6
 * controle de atividades, evitando crash inesperado caso o banco esteja aberto.
 
 ## 1.0.1

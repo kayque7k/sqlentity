@@ -10,10 +10,10 @@ import 'package:sqlentity/repository/repository.dart';
 class DAORepository<T extends Entity> implements IDAORepository<T> {
   T entity;
 
-  IDAO _idao;
+  IDAO idao;
 
   DAORepository(this.entity) {
-    _idao = new DAO(this.entity);
+    idao = new DAO(this.entity);
   }
 
   ///insert data table
@@ -23,7 +23,7 @@ class DAORepository<T extends Entity> implements IDAORepository<T> {
       var result;
       await Repository().coroutine(() async {
         try {
-          result = await _idao.insert(entity);
+          result = await idao.insert(entity);
         } catch (e) {}
       });
 
@@ -40,7 +40,7 @@ class DAORepository<T extends Entity> implements IDAORepository<T> {
       var result;
       await Repository().coroutine(() async {
         try {
-          result = await _idao.select();
+          result = await idao.select();
         } catch (e) {}
       });
 
@@ -59,7 +59,7 @@ class DAORepository<T extends Entity> implements IDAORepository<T> {
       var result;
       await Repository().coroutine(() async {
         try {
-          result = await _idao.update(entity);
+          result = await idao.update(entity);
         } catch (e) {}
       });
 
@@ -76,7 +76,7 @@ class DAORepository<T extends Entity> implements IDAORepository<T> {
       var result;
       await Repository().coroutine(() async {
         try {
-          result = await _idao.delete(entity);
+          result = await idao.delete(entity);
         } catch (e) {}
       });
       return await result;
@@ -92,7 +92,7 @@ class DAORepository<T extends Entity> implements IDAORepository<T> {
       var result;
       await Repository().coroutine(() async {
         try {
-          result = await _idao.getById(entity);
+          result = await idao.getById(entity);
         } catch (e) {
         }
       });
@@ -109,7 +109,7 @@ class DAORepository<T extends Entity> implements IDAORepository<T> {
       var result;
       await Repository().coroutine(() async {
         try {
-          result = await _idao.count();
+          result = await idao.count();
         } catch (e) {
         }
       });
