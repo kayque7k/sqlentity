@@ -1,0 +1,37 @@
+PODS:
+  - Flutter (1.0.0)
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
+  - sqflite (0.0.1):
+    - Flutter
+    - FMDB (~> 2.7.2)
+  - sqlentity (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - sqflite (from `.symlinks/plugins/sqflite/ios`)
+  - sqlentity (from `.symlinks/plugins/sqlentity/ios`)
+
+SPEC REPOS:
+  trunk:
+    - FMDB
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  sqflite:
+    :path: ".symlinks/plugins/sqflite/ios"
+  sqlentity:
+    :path: ".symlinks/plugins/sqlentity/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  sqflite: 4001a31ff81d210346b500c55b17f4d6c7589dd0
+  sqlentity: 1c2499a4e7af7069e36e915cd2816eb363df4e85
+
+PODFILE CHECKSUM: 3dbe063e9c90a5d7c9e4e76e70a821b9e2c1d271
+
+COCOAPODS: 1.8.4

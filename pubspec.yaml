@@ -1,6 +1,6 @@
 name: sqlentity
 description: SQLite DataBase, performs the creation of the database, manages activity control, and all the benefits of an ORM.
-version: 1.0.6
+version: 1.0.7
 author: kayque_rodrigues7@hotmail.com
 homepage: https://github.com/kayque7k/sqlentity.git
 
@@ -12,8 +12,8 @@ dependencies:
   flutter:
     sdk: flutter
 
-  sqflite: ^1.1.5
-  path: ^1.6.2
+  sqflite: ^1.2.0
+  path: ^1.6.4
 
 
 # For information on the generic Dart part of this file, see the

@@ -5,7 +5,7 @@ o Sqlentity é um ORM focado em facilitar o vida do desenvolvedor, onde é possi
 # instalação
 ```
 dependencies:
-  sqlentity: ^1.0.6
+  sqlentity: ^1.0.7
 ```
 
 # Exemplo em codigo
