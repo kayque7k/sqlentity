@@ -25,16 +25,16 @@ class _MyAppState extends State<MyApp> {
   
   void initDatabase() {
     DataBaseConfig dataBaseConfig = DataBaseConfig();
-    dataBaseConfig.database_name = "Teste";
+    dataBaseConfig.database_name = "Teste10";
     dataBaseConfig.database_version = 1;
     dataBaseConfig.entitys = [new UserEntity()];
   }
 
   void initData() async {
     //criar a entidade
-    UserEntity dart = new UserEntity(name: "DART",sobrename: "FLUTTER");
-    UserEntity flutter = new UserEntity(name: "JS",sobrename: "ANGULAR");
-    UserEntity android = new UserEntity(name: "JS",sobrename: "REACT");
+    UserEntity dart = new UserEntity(name: "Flop",sobrename: "FLUTTER");
+    UserEntity flutter = new UserEntity(name: "Tores",sobrename: "ANGULAR");
+    UserEntity android = new UserEntity(name: "Gold",sobrename: "REACT");
 
     //realiza a inserção no banco e retorna o id
     int iddart = await _idao.insert(dart);
@@ -62,9 +62,9 @@ class _MyAppState extends State<MyApp> {
     //quantidade de usuarios
     var count = await _idao.count();
     
-    if(userlist.length == count)
+    if(userlist?.length == count)
     //setando item local
-    userlist.add(getById);
+    userlist?.add(getById);
     
     setState(() {
       //setando lista
@@ -116,7 +116,7 @@ class UserEntity extends Entity {
     createColumn("ID", "INTEGER PRIMARY KEY AUTOINCREMENT", 1);
 
     //nova coluna
-    createColumn("NAME", "TEXT", 1);
+    createColumn("NAME", "TEXT UNIQUE", 1);
     createColumn("SOBRENAME", "TEXT", 1);
   }
 
