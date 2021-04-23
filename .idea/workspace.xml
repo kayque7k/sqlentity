@@ -5,14 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6adafcaf-e32e-44d9-b579-e734c539b387" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/example/.flutter-plugins-dependencies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/Flutter/flutter_export_environment.sh" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Flutter/flutter_export_environment.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/base-entity/column.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/base-entity/column.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/base-entity/entity.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/base-entity/entity.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/dao/dao.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/dao/dao.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/dao/i-dao.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/dao/i-dao.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/database/abstract-database.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/database/abstract-database.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/database/database-config.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/database/database-config.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/repository/dao-repository/dao-repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/repository/dao-repository/dao-repository.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/repository/dao-repository/i-dao-repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/repository/dao-repository/i-dao-repository.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/repository/repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/repository/repository.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -35,12 +50,14 @@
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550866392824" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
@@ -48,18 +65,6 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="flutter.settings" />
     <property name="show.migrate.to.gradle.popup" value="false" />
-  </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />

@@ -6,8 +6,8 @@ import 'package:sqlentity/dao/i-dao.dart';
 import 'package:sqlentity/database/abstract-database.dart';
 
 ///Repository
-class DAO<T extends Entity> extends AbstractRepository implements IDAO<T> {
-  T _entity;
+class DAO<T extends Entity?> extends AbstractRepository implements IDAO<T> {
+  T? _entity;
 
   ///init repository
   DAO(T entity) : super() {
@@ -15,25 +15,25 @@ class DAO<T extends Entity> extends AbstractRepository implements IDAO<T> {
   }
 
   ///table
-  T get entity => _entity;
+  T? get entity => _entity;
 
   ///insert data table
   @override
-  Future<int> insert(T entity) async {
-    var results;
+  Future<int?> insert(T entity) async {
+    late var results;
     try {
       await open();
-      var sql = 'INSERT INTO ${entity.table}(';
-      entity.column.forEach((values) {
-        if (values.column != entity.column[0].column) {
-          if (values == entity.column[entity.column.length - 1])
+      var sql = 'INSERT INTO ${entity!.table}(';
+      entity!.column.forEach((values) {
+        if (values.column != entity!.column[0].column) {
+          if (values == entity!.column[entity.column.length - 1])
             sql += "${values.column} ";
           else
             sql += "${values.column} ,";
         }
       });
       sql += ") VALUES (";
-      entity.column.forEach((column) {
+      entity!.column.forEach((column) {
         if (column.column != entity.column[0].column) if (column == entity.column[entity.column.length - 1])
           sql += "? ";
         else
@@ -42,8 +42,8 @@ class DAO<T extends Entity> extends AbstractRepository implements IDAO<T> {
       sql += ")";
 
       await database.transaction((txn) async {
-        var batch = await txn.batch();
-        await batch.rawInsert(sql, entity.getValues());
+        var batch = txn.batch();
+        batch.rawInsert(sql, entity.getValues());
         results = await batch.commit();
       });
 
@@ -59,9 +59,9 @@ class DAO<T extends Entity> extends AbstractRepository implements IDAO<T> {
   @override
   Future<List<T>> select() async {
     await open();
-    var select = await database.rawQuery('SELECT * FROM ${_entity.table}');
+    var select = await database.rawQuery('SELECT * FROM ${_entity!.table}');
     await close();
-    return await select.map((i) => _entity.map(i)).toList();
+    return await (select.map((i) => _entity!.map(i)).toList() as FutureOr<List<T>>);
   }
 
   ///update data table
@@ -70,7 +70,7 @@ class DAO<T extends Entity> extends AbstractRepository implements IDAO<T> {
     try {
       await open();
 
-      var sql = 'UPDATE ${entity.table} SET ';
+      var sql = 'UPDATE ${entity!.table} SET ';
       entity.column.forEach((values) {
         if (values.column != entity.column[0].column) {
           if (values == entity.column[entity.column.length - 1])
@@ -83,7 +83,7 @@ class DAO<T extends Entity> extends AbstractRepository implements IDAO<T> {
 
       await database.transaction((txn) async {
         var batch = txn.batch();
-        await batch.rawUpdate(sql, entity.getValues());
+        batch.rawUpdate(sql, entity.getValues());
         await batch.commit();
       });
 
@@ -100,19 +100,19 @@ class DAO<T extends Entity> extends AbstractRepository implements IDAO<T> {
   Future<bool> delete(T entity) async {
     try {
       await open();
-      var sql = 'DELETE FROM  ${entity.table} WHERE ${entity.column[0].column} = ${entity.column[0].value}';
+      var sql = 'DELETE FROM  ${entity!.table} WHERE ${entity!.column[0].column} = ${entity.column[0].value}';
 
       await database.transaction((txn) async {
         var batch = txn.batch();
-        await batch.rawDelete(sql);
+        batch.rawDelete(sql);
         await batch.commit();
       });
 
       await close();
-      return await true;
+      return true;
     } catch (e) {
       await close();
-      return await false;
+      return false;
     }
   }
 
@@ -120,16 +120,16 @@ class DAO<T extends Entity> extends AbstractRepository implements IDAO<T> {
   @override
   Future<T> getById(T entity) async {
     await open();
-    var select = await database.rawQuery('SELECT * FROM ${_entity.table} WHERE ${entity.column[0].column} = ${entity.column[0].value}');
+    var select = await database.rawQuery('SELECT * FROM ${_entity!.table} WHERE ${entity!.column[0].column} = ${entity!.column[0].value}');
     await close();
-    return await _entity.map(select[0]) as T;
+    return await _entity!.map(select[0]) as T;
   }
 
   ///count data table
   @override
-  Future<int> count() async {
+  Future<int?> count() async {
     await open();
-    var count = await Sqflite.firstIntValue(await database.rawQuery("SELECT COUNT(*) FROM ${_entity.table}"));
+    var count = await Sqflite.firstIntValue(await database.rawQuery("SELECT COUNT(*) FROM ${_entity!.table}"));
     await close();
     return await count;
   }
