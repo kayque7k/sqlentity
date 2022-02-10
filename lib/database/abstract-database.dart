@@ -7,8 +7,8 @@ import 'package:sqlentity/database/database-config.dart';
 ///The AbstractRepository is the class that performs the interaction with the database,
 ///performs the updates and creation of the bank when necessary.
 abstract class AbstractRepository {
-  Database database;
-  DataBaseConfig _databaseConfig;
+  late Database database;
+  late DataBaseConfig _databaseConfig;
 
   ///open database
   open() async {
@@ -27,7 +27,7 @@ abstract class AbstractRepository {
         version: _databaseConfig.database_version,
         singleInstance: true,
         onCreate: (Database db, int version) async {
-      for (var entity in _databaseConfig.entitys) {
+      for (var entity in _databaseConfig.entitys!) {
         var sql = "CREATE TABLE IF NOT EXISTS ${entity.table} (";
 
         entity.columncreate.forEach((column) {
@@ -48,7 +48,7 @@ abstract class AbstractRepository {
         } catch (e) {}
       }
     }, onUpgrade: (Database db, int oldVersion, int newVersion) async {
-      for (var entity in _databaseConfig.entitys) {
+      for (var entity in _databaseConfig.entitys!) {
         for (var column in entity.columncreate) {
           if (column.value == newVersion) {
             try {

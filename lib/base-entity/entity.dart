@@ -5,19 +5,19 @@ import 'package:sqlentity/database/database-config.dart';
 abstract class Entity {
 
   String table;
-  List<Column<String, String, Object>> column;
-  List<Column<String, String, int>> columnalter;
-  List<Column<String, String, int>> columndelete;
-  List<Column<String, String, int>> columncreate;
-  DataBaseConfig _dataBaseConfig;
+  late List<Column<String, String, Object>> column;
+  late List<Column<String, String, int>> columnalter;
+  late List<Column<String, String, int>> columndelete;
+  late List<Column<String, String, int>> columncreate;
+  late DataBaseConfig _dataBaseConfig;
 
   ///set table
   Entity(this.table) {
     _dataBaseConfig = DataBaseConfig();
-    column = new List();
-    columnalter = new List();
-    columndelete = new List();
-    columncreate = new List();
+    column = [];
+    columnalter = [];
+    columndelete = [];
+    columncreate = [];
     configColumn();
   }
 
@@ -55,7 +55,7 @@ abstract class Entity {
   ///update columns
   void _updateFinal(var name, var type, var versao) {
     columncreate.forEach((column) {
-      if (column.column == name && _dataBaseConfig.database_version <= versao) {
+      if (column.column == name && _dataBaseConfig.database_version! <= versao) {
         column.value = versao;
         column.type = type;
         return;
@@ -66,13 +66,13 @@ abstract class Entity {
   ///delete columns
   void _deleteFinal(var name, int versao) {
     for (int i = 0; i < columncreate.length; i++)
-      if (columncreate[i].column == name && _dataBaseConfig.database_version <= versao)
+      if (columncreate[i].column == name && _dataBaseConfig.database_version! <= versao)
         columncreate.removeAt(i);
   }
 
   ///values columns
-  List<Object> getValues() {
-    List<Object> values = new List();
+  List<Object?> getValues() {
+    List<Object?> values = [];
     column.forEach((column) {
       if (column.column != this.column[0].column) values.add(column.value);
     });

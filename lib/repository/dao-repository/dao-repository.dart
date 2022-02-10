@@ -7,10 +7,10 @@ import 'package:sqlentity/repository/dao-repository/i-dao-repository.dart';
 import 'package:sqlentity/repository/repository.dart';
 
 ///Repository
-class DAORepository<T extends Entity> implements IDAORepository<T> {
+class DAORepository<T extends Entity> implements IDAORepository<T?> {
   T entity;
 
-  IDAO idao;
+  late IDAO idao;
 
   DAORepository(this.entity) {
     idao = new DAO(this.entity);
@@ -18,7 +18,7 @@ class DAORepository<T extends Entity> implements IDAORepository<T> {
 
   ///insert data table
   @override
-  Future<int> insert(T entity) async {
+  Future<int?> insert(T? entity) async {
     try {
       var result;
       await Repository().coroutine(() async {
@@ -35,18 +35,18 @@ class DAORepository<T extends Entity> implements IDAORepository<T> {
 
   ///search data table
   @override
-  Future<List<T>> select() async {
+  Future<List<T>?> select() async {
     try {
-      var result;
+      late var result;
       await Repository().coroutine(() async {
         try {
           result = await idao.select();
         } catch (e) {}
       });
 
-      List<T> itens = await new List();
+      List<T> itens = [];
       await result.forEach((item) => itens.add(item as T));
-      return await itens;
+      return itens;
     } catch (e) {
       return await null;
     }
@@ -54,7 +54,7 @@ class DAORepository<T extends Entity> implements IDAORepository<T> {
 
   ///update data table
   @override
-  Future<bool> update(T entity) async {
+  Future<bool?> update(T? entity) async {
     try {
       var result;
       await Repository().coroutine(() async {
@@ -71,7 +71,7 @@ class DAORepository<T extends Entity> implements IDAORepository<T> {
 
   ///delete data table
   @override
-  Future<bool> delete(T entity) async {
+  Future<bool?> delete(T? entity) async {
     try {
       var result;
       await Repository().coroutine(() async {
@@ -87,7 +87,7 @@ class DAORepository<T extends Entity> implements IDAORepository<T> {
 
   ///search for id data table
   @override
-  Future<T> getById(T entity) async {
+  Future<T?> getById(T? entity) async {
     try {
       var result;
       await Repository().coroutine(() async {
@@ -96,7 +96,7 @@ class DAORepository<T extends Entity> implements IDAORepository<T> {
         } catch (e) {
         }
       });
-      return await result as T;
+      return await result as T?;
     } catch (e) {
       return await null;
     }
@@ -104,7 +104,7 @@ class DAORepository<T extends Entity> implements IDAORepository<T> {
 
   ///count data table
   @override
-  Future<int> count() async {
+  Future<int?> count() async {
     try {
       var result;
       await Repository().coroutine(() async {
