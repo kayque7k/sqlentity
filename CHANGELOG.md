@@ -1,3 +1,6 @@
+## 1.1.0
+* upgrade para flutter 3
+
 ## 1.0.6 and 1.0.7
 * controle de atividades, evitando crash inesperado caso o banco esteja aberto.
 
