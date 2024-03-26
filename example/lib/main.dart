@@ -12,14 +12,14 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  List<UserEntity> users = new List();
-  IDAORepository<UserEntity> _idao;
+  List<UserEntity> users = [];
+  late IDAORepository<UserEntity> _idao;
 
   @override
   void initState() {
     super.initState();
     initDatabase();
-    _idao = new DAORepository(new UserEntity());
+    _idao = new DAORepository(new UserEntity()) as IDAORepository<UserEntity>;
     initData();
   }
   
@@ -37,17 +37,17 @@ class _MyAppState extends State<MyApp> {
     UserEntity android = new UserEntity(name: "Gold",sobrename: "REACT");
 
     //realiza a inserção no banco e retorna o id
-    int iddart = await _idao.insert(dart);
+    int? iddart = await _idao.insert(dart);
     var teste = _idao.select();
     var idFlutter =await _idao.insert(flutter);
-    int idandroid = await _idao.insert(android);
-    dart.id = iddart;
+    int? idandroid = await _idao.insert(android);
+    dart.id = iddart!;
     dart.sobrename = "KOTLIN";
 
     //realiza a atualização da entidade no banco e retorna um status
     var teste02 = _idao.select();
     var isUpdate = await _idao.update(dart);
-    android.id = idandroid;
+    android.id = idandroid!;
     
     // realiza a exclusao no banco e retorna um status
     var teste03 = _idao.select();
@@ -68,7 +68,7 @@ class _MyAppState extends State<MyApp> {
     
     setState(() {
       //setando lista
-      users = userlist;
+      users = userlist!;
     });
   }
 
@@ -100,11 +100,11 @@ class _MyAppState extends State<MyApp> {
 }
 
 class UserEntity extends Entity {
-  int _id;
-  String _name;
-  String _sobrename;
+  late int _id;
+  late String _name;
+  late String _sobrename;
 
-  UserEntity({var id: 0, var name: "", var sobrename: ""}) : super('USER') {
+  UserEntity({var id= 0, var name= "", var sobrename= ""}) : super('USER') {
     this.id = id;
     this.name = name;
     this.sobrename = sobrename;
